@@ -22,7 +22,7 @@ GRANT ROLE ACCOUNTADMIN TO USER backupadmin
 3. Create `terraform` user with `SECURITYADMIN` default role.
 ```sql
 CREATE USER terraform
-PASSWORD = <in_lastpass>
+PASSWORD = <in_pw_manager>
 DEFAULT_ROLE = SECURITYADMIN
 ```
 4. Grant `SECURITYADMIN` role to `terraform` user to manage users
