@@ -1,9 +1,9 @@
 #== Grant All Service User and Principal Roles to SYSADMIN so they can be managed
 locals {
-    all_roles = merge(
-      var.principal_roles,
-      var.service_users
-    )
+  all_roles = merge(
+    var.principal_roles,
+    var.service_users
+  )
 }
 
 resource "snowflake_role_grants" "grant_all_user_roles_to_sysadmin" {
