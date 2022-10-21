@@ -47,5 +47,5 @@ resource "snowflake_role_grants" "service_user_role_grants" {
   for_each = var.service_users
 
   role_name = each.key
-  roles     = each.value.privilege_roles
+  users     = [each.key]
 }
