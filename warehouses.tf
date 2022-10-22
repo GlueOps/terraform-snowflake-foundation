@@ -32,7 +32,7 @@ resource "snowflake_warehouse" "warehouse" {
 #= Grants
 resource "snowflake_warehouse_grant" "prod_warehouse" {
   provider = snowflake
-  for_each = local.warehouse_config_with_overrides
+  for_each = snowflake_warehouse.warehouse
 
   warehouse_name = each.key
   privilege      = "USAGE"
