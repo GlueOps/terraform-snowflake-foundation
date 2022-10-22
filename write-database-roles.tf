@@ -5,15 +5,11 @@ resource "snowflake_role" "write_database_role" {
   name = "WRITE_${each.key}"
 }
 
-output "test_write_db_role" {
-  value = snowflake_role.write_database_role
-}
-
 # #=== Grants
 # #= database
 resource "snowflake_database_grant" "write_db_cs_grant" {
   provider = snowflake
-  for_each = toset(var.databases)
+  for_each = snowflake_database.foundation_databases
 
   database_name = each.key
   privilege     = "CREATE SCHEMA"
@@ -25,7 +21,7 @@ resource "snowflake_database_grant" "write_db_cs_grant" {
 
 resource "snowflake_database_grant" "write_db_m_grant" {
   provider = snowflake
-  for_each = toset(var.databases)
+  for_each = snowflake_database.foundation_databases
 
   database_name = each.key
   privilege     = "MONITOR"
@@ -37,7 +33,7 @@ resource "snowflake_database_grant" "write_db_m_grant" {
 
 resource "snowflake_database_grant" "write_dev_db_mod_grant" {
   provider = snowflake
-  for_each = toset(var.databases)
+  for_each = snowflake_database.foundation_databases
 
   database_name = each.key
   privilege     = "MODIFY"
