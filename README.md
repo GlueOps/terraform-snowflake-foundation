@@ -2,6 +2,8 @@
 
 This module offers an opinionated starting point for setting up a Snowflake account with affordances for the infrastructure and RBAC features generally found in "the modern data stack."
 
+The module leverages the [Snowflake Terraform Proviced](https://registry.terraform.io/providers/Snowflake-Labs/snowflake/latest).
+
 The module can be used in conjunction with [terraform-snowflake-data-integrator](https://github.com/GlueOps/terraform-snowflake-data-integrator), which creates the infrastructure and access required by common data integrator tools, like [Hevo Data](https://hevodata.com/) and [Fivetran](https://www.fivetran.com/).
 
 Specifically, the module creates and manages the following Snowflake resources:
