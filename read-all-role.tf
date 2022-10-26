@@ -1,13 +1,5 @@
-data "snowflake_databases" "all" {}
-
-
 locals {
-  read_all_role_name = "READ_ALL"
-
-  all_databases = setsubtract([
-    for d in data.snowflake_databases.all.databases :
-    d.name
-  ], ["SNOWFLAKE", "SNOWFLAKE_SAMPLE_DATA"]) # remove default databases
+  foundation_databases = [for k, v in snowflake_database.foundation_databases : k]
 }
 
 
@@ -16,12 +8,12 @@ locals {
 resource "snowflake_role" "read_all_role" {
   provider = snowflake
 
-  name = local.read_all_role_name
+  name = "READ_ALL"
 }
 
 resource "snowflake_database_grant" "read_all_databases" {
   provider = snowflake
-  for_each = toset(local.all_databases)
+  for_each = toset(local.foundation_databases)
 
   database_name = each.value
   privilege     = "USAGE"
@@ -31,7 +23,7 @@ resource "snowflake_database_grant" "read_all_databases" {
 
 resource "snowflake_schema_grant" "read_all_schemas" {
   provider = snowflake
-  for_each = toset(local.all_databases)
+  for_each = toset(local.foundation_databases)
 
   database_name = each.value
   privilege     = "USAGE"
@@ -42,7 +34,7 @@ resource "snowflake_schema_grant" "read_all_schemas" {
 
 resource "snowflake_table_grant" "read_all_table_select_grant" {
   provider = snowflake
-  for_each = toset(local.all_databases)
+  for_each = toset(local.foundation_databases)
 
   database_name = each.value
   privilege     = "SELECT"
@@ -53,7 +45,7 @@ resource "snowflake_table_grant" "read_all_table_select_grant" {
 
 resource "snowflake_view_grant" "read_all_view_select_grant" {
   provider = snowflake
-  for_each = toset(local.all_databases)
+  for_each = toset(local.foundation_databases)
 
   database_name = each.value
   privilege     = "SELECT"

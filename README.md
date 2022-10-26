@@ -40,6 +40,6 @@ ALTER USER <user> RESET PASSWORD;
 The module separates roles into two categories:
 
 * **`principal_roles`**: Roles to be assigned to entities using the roles, such as `human_users` and `service_users`.  These roles collect the various privileges required by a given principal to perform tasks in Snowflake.
-* **`privilege_roles`**: Roles that are logical groupings of privileges that are composably assigned to `principal_roles`.  By default, the module creates a `READ_ALL` privilege role that enables reading from all data sources and a collection of `WRITE_*` roles, which enable writing to each database, respectively.
+* **`privilege_roles`**: Roles that are logical groupings of privileges that are composably assigned to `principal_roles`.  By default, the module creates a `READ_ALL` privilege role that enables reading from all databases created using this module and a collection of `WRITE_*` roles, which enable writing to each database, respectively.
 
 The relationships among roles can be visualized using the [Snowflake Inspector](http://snowflakeinspector.hashmapinc.com/).
