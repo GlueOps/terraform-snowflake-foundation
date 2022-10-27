@@ -67,7 +67,7 @@ module "test_foundation" {
       ]
       password = "<your-secret-password>"
     }
-    METABASE = {
+    PRESET = {
       privilege_roles = [
         "READ_ALL",
       ]
