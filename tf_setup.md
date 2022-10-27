@@ -30,7 +30,7 @@ DEFAULT_ROLE = ACCOUNTADMIN
 GRANT ROLE ACCOUNTADMIN TO USER terraform
 ```
 
-5. Submit request to Snowflake to create Snowflake Organization and add accounts to organization.
+5. Submit an email request to Snowflake to create Snowflake Organization and add accounts to organization.
 
 6. Grant `ORGADMIN` role to `<company_key>admin` and `backupadmin` users
 ```sql
