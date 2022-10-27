@@ -19,24 +19,20 @@ CREATE USER backupadmin PASSWORD = <in_pw_manager> DEFAULT_ROLE = PUBLIC
 ```sql
 GRANT ROLE ACCOUNTADMIN TO USER backupadmin
 ```
-3. Create `terraform` user with `SECURITYADMIN` default role.
+3. Create `terraform` user with `ACCOUNTADMIN` default role.
 ```sql
 CREATE USER terraform
 PASSWORD = <in_pw_manager>
-DEFAULT_ROLE = SECURITYADMIN
+DEFAULT_ROLE = ACCOUNTADMIN
 ```
-4. Grant `SECURITYADMIN` role to `terraform` user to manage users
+4. Grant `ACCOUNTADMIN` role to `terraform` user to manage users
 ```sql
-GRANT ROLE SECURITYADMIN TO USER terraform
-```
-5. Grant `SYSADMIN` role to `terraform` user to manage objects
-```sql
-GRANT ROLE SYSADMIN TO USER terraform
+GRANT ROLE ACCOUNTADMIN TO USER terraform
 ```
 
-6. Submit request to Snowflake to create Snowflake Organization and add accounts to organization.
+5. Submit request to Snowflake to create Snowflake Organization and add accounts to organization.
 
-7. Grant `ORGADMIN` role to `<company_key>admin` and `backupadmin` users
+6. Grant `ORGADMIN` role to `<company_key>admin` and `backupadmin` users
 ```sql
 GRANT ROLE ORGADMIN TO USER <company_key>admin;
 GRANT ROLE ORGADMIN TO USER backupadmin;
